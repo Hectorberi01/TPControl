@@ -29,4 +29,10 @@ public class YamsGame
         if (roll.Count != 5) return false;
         return roll.GroupBy(x => x).Any(g => g.Count() == 4);
     }
+    
+    public bool IsBrelan(List<int> roll)
+    {
+        if (roll.Count != 5) return false;
+        return roll.GroupBy(x => x).Any(g => g.Count() == 3);
+    }
 }

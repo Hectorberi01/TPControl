@@ -68,4 +68,22 @@ public class UnitTest1
         Assert.True(game.IsCarre(yamsList4));
         Assert.False(game.IsCarre(yamsList5));
     }
+
+    [Fact]
+    public void TestIsBrelan()
+    {
+        List<int> yamsList = new List<int> { 1, 2, 3, 4, 5 };
+        List<int> yamsList2 = new List<int> { 6, 6, 6, 1, 5};
+        List<int> yamsList3 = new List<int> { 2, 2, 4, 4, 4};
+        List<int> yamsList4 = new List<int> { 2, 4, 4, 4, 4};
+        List<int> yamsList5 = new List<int> { 2, 3, 2, 5, 5,5};
+        
+        var game = new YamsGame();
+        
+        Assert.False(game.IsBrelan(yamsList));
+        Assert.True(game.IsBrelan(yamsList2));
+        Assert.True(game.IsBrelan(yamsList3));
+        Assert.False(game.IsBrelan(yamsList4));
+        Assert.False(game.IsBrelan(yamsList5));
+    }
 }
