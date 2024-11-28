@@ -166,4 +166,83 @@ public class UnitTest1
 
         Assert.Equal(16, result);
     }
+    
+    
+    [Fact]
+    public void AnalyzeRollWithFigure_WhenYams_ShouldReturnYamsAnd50Points()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 6, 6, 6, 6, 6 };
+        var result = game.AnalyzeRollWithFigure(roll);
+        Assert.Equal("Yams", result.Item1); 
+        Assert.Equal(50, result.Item2); 
+    }
+
+    [Fact]
+    public void AnalyzeRollWithFigure_WhenFull_ShouldReturnFullAnd30Points()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 3, 3, 3, 5, 5 };
+
+        var result = game.AnalyzeRollWithFigure(roll);
+        Assert.Equal("Full", result.Item1); 
+        Assert.Equal(30, result.Item2); 
+    }
+
+    [Fact]
+    public void AnalyzeRollWithFigure_WhenNoFigure_ShouldReturnChanceAndSum()
+    {
+       
+        var game = new YamsGame();
+        var roll = new List<int> { 1, 2, 3, 4, 6 }; 
+        var result = game.AnalyzeRollWithFigure(roll);
+        Assert.Equal("Chance", result.Item1);
+        Assert.Equal(16, result.Item2);
+    }
+    
+    
+    [Fact]
+    public void ProcessRolls_ShouldRespectUniqueFigureConstraint()
+    {
+        var game = new YamsGame();
+        var rolls = new List<List<int>>
+        {
+            new List<int> { 1, 1, 1, 2, 2 },
+            new List<int> { 1, 1, 1, 2, 2 },
+            new List<int> { 1, 1, 1, 2, 2 }
+        };
+
+        var results = game.ProcessRolls(rolls);
+        Assert.Equal("Full", results[0].Figure);
+        Assert.Equal(30, results[0].Points);
+
+        Assert.Equal("Brelan", results[1].Figure);
+        Assert.Equal(28, results[1].Points);
+
+        Assert.Equal("Chance", results[2].Figure);
+        Assert.Equal(7, results[2].Points);
+    }
+
+    [Fact]
+    public void ProcessRolls_ShouldHandleMultipleFiguresCorrectly()
+    {
+        var game = new YamsGame();
+        var rolls = new List<List<int>>
+        {
+            new List<int> { 6, 6, 6, 6, 6 },
+            new List<int> { 2, 3, 4, 5, 6 },
+            new List<int> { 3, 3, 3, 5, 5 } 
+        };
+        var results = game.ProcessRolls(rolls);
+
+        Assert.Equal("Yams", results[0].Figure);  
+        Assert.Equal(50, results[0].Points);
+
+        Assert.Equal("GrandeSuite", results[1].Figure);
+        Assert.Equal(40, results[1].Points);
+
+        Assert.Equal("Full", results[2].Figure);
+        Assert.Equal(30, results[2].Points);
+    }
+
 }

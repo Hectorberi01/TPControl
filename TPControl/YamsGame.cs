@@ -2,6 +2,8 @@ namespace TPControl;
 
 public class YamsGame
 {
+    private HashSet<string> usedFigures = new HashSet<string>();
+
     public bool IsYams(List<int> roll)
     {
         if (roll.Count != 5) return false;
@@ -52,5 +54,54 @@ public class YamsGame
         if (IsBrelan(roll)) return 28;
 
         return SumRoll(roll); 
+    }
+    
+    public (string, int) AnalyzeRollWithFigure(List<int> roll)
+    {
+        if (IsYams(roll) && !usedFigures.Contains("Yams"))
+        {
+            usedFigures.Add("Yams");
+            return ("Yams", 50);
+        }
+
+        if (IsGrandeSuite(roll) && !usedFigures.Contains("GrandeSuite"))
+        {
+            usedFigures.Add("GrandeSuite");
+            return ("GrandeSuite", 40);
+        }
+
+        if (IsFull(roll) && !usedFigures.Contains("Full"))
+        {
+            usedFigures.Add("Full");
+            return ("Full", 30);
+        }
+
+        if (IsCarre(roll) && !usedFigures.Contains("Carre"))
+        {
+            usedFigures.Add("Carre");
+            return ("Carre", 35);
+        }
+
+        if (IsBrelan(roll) && !usedFigures.Contains("Brelan"))
+        {
+            usedFigures.Add("Brelan");
+            return ("Brelan", 28);
+        }
+
+        return ("Chance", SumRoll(roll));
+    }
+
+    public List<(string Figure, int Points)> ProcessRolls(List<List<int>> rolls)
+    {
+        usedFigures.Clear();
+        var results = new List<(string Figure, int Points)>();
+
+        foreach (var roll in rolls)
+        {
+            var result = AnalyzeRollWithFigure(roll);
+            results.Add(result);
+        }
+
+        return results;
     }
 }
