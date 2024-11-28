@@ -5,5 +5,6 @@
     &lt;TestId&gt;xUnit::D6679C98-E637-4AF1-B9FF-37E943B81090::net8.0::TestYamsGame.UnitTest1.IsGrandeSuite&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D6679C98-E637-4AF1-B9FF-37E943B81090::net8.0::TestYamsGame.UnitTest1.TestIsFull&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::D6679C98-E637-4AF1-B9FF-37E943B81090::net8.0::TestYamsGame.UnitTest1.TestIsGrandeSuite&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D6679C98-E637-4AF1-B9FF-37E943B81090::net8.0::TestYamsGame.UnitTest1.TestIsCarre&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

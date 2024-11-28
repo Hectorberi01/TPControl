@@ -23,4 +23,10 @@ public class YamsGame
         var groups = roll.GroupBy(x => x);
         return groups.Count() == 2 && groups.Any(g => g.Count() == 3);
     }
+    
+    public bool IsCarre(List<int> roll)
+    {
+        if (roll.Count != 5) return false;
+        return roll.GroupBy(x => x).Any(g => g.Count() == 4);
+    }
 }

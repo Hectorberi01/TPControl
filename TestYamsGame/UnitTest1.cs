@@ -51,4 +51,21 @@ public class UnitTest1
         Assert.True(game.IsFull(yamsList4));
         Assert.False(game.IsFull(yamsList5));
     }
+
+    [Fact]
+    public void TestIsCarre()
+    {
+        List<int> yamsList = new List<int> { 1, 2, 3, 4, 5 };
+        List<int> yamsList2 = new List<int> { 6, 6, 6, 6, 5};
+        List<int> yamsList3 = new List<int> { 2, 2, 4, 4, 3};
+        List<int> yamsList4 = new List<int> { 2, 4, 4, 4, 4};
+        List<int> yamsList5 = new List<int> { 2, 3, 2, 5, 5,5};
+        
+        var game = new YamsGame();
+        Assert.False(game.IsCarre(yamsList));
+        Assert.True(game.IsCarre(yamsList2));
+        Assert.False(game.IsCarre(yamsList3));
+        Assert.True(game.IsCarre(yamsList4));
+        Assert.False(game.IsCarre(yamsList5));
+    }
 }
