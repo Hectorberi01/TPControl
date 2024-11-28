@@ -42,6 +42,8 @@ public class UnitTest1
         List<int> yamsList2 = new List<int> { 6, 6, 6, 6, 5};
         List<int> yamsList3 = new List<int> { 2, 2, 4, 4, 3};
         List<int> yamsList4 = new List<int> { 2, 2, 4, 4, 4};
+        // dans le cas ou on a une suite qui dépasse 5 ou inférieur à 5
+        // il faut gérer ce cas 
         List<int> yamsList5 = new List<int> { 2, 3, 2, 5, 5,5};
         
         var game = new YamsGame();
@@ -85,5 +87,24 @@ public class UnitTest1
         Assert.True(game.IsBrelan(yamsList3));
         Assert.False(game.IsBrelan(yamsList4));
         Assert.False(game.IsBrelan(yamsList5));
+    }
+
+    [Fact]
+    public void TestSumRoll()
+    {
+        List<int> yamsList = new List<int> { 1, 2, 3, 4, 5 };
+        List<int> yamsList2 = new List<int> { 6, 6, 6, 1, 5};
+        List<int> yamsList3 = new List<int> { 2, 2, 4, 4, 4};
+        List<int> yamsList4 = new List<int> { 2, 4, 4, 4, 4};
+        List<int> yamsList5 = new List<int> { 2, 3, 2, 5, 5,5};
+        
+        var game = new YamsGame();
+        
+        Assert.Equal(15, game.SumRoll(yamsList));
+        Assert.Equal(24, game.SumRoll(yamsList2));
+        Assert.Equal(16, game.SumRoll(yamsList3));
+        Assert.Equal(18, game.SumRoll(yamsList4));
+        Assert.Throws<Exception>(() => game.SumRoll(yamsList5));
+        
     }
 }

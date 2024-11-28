@@ -35,4 +35,10 @@ public class YamsGame
         if (roll.Count != 5) return false;
         return roll.GroupBy(x => x).Any(g => g.Count() == 3);
     }
+    
+    public int SumRoll(List<int> roll)
+    {
+        if (roll.Count != 5) throw new Exception();
+        return roll.Sum();
+    }
 }
