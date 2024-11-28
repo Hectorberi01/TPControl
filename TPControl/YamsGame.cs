@@ -16,4 +16,11 @@ public class YamsGame
         return roll.SequenceEqual(new List<int> { 1, 2, 3, 4, 5 }) || 
                roll.SequenceEqual(new List<int> { 2, 3, 4, 5, 6 });
     }
+    
+    public bool IsFull(List<int> roll)
+    {
+        if (roll.Count != 5) return false;
+        var groups = roll.GroupBy(x => x);
+        return groups.Count() == 2 && groups.Any(g => g.Count() == 3);
+    }
 }
