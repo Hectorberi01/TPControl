@@ -41,4 +41,16 @@ public class YamsGame
         if (roll.Count != 5) throw new Exception();
         return roll.Sum();
     }
+    
+    
+    public int AnalyzeRoll(List<int> roll)
+    {
+        if (IsYams(roll)) return 50;
+        if (IsGrandeSuite(roll)) return 40;
+        if (IsFull(roll)) return 30;
+        if (IsCarre(roll)) return 35;
+        if (IsBrelan(roll)) return 28;
+
+        return SumRoll(roll); 
+    }
 }

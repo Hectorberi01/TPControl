@@ -7,7 +7,6 @@ public class UnitTest1
     [Fact]
     public void TestIsYams()
     {
-        // Exemple de lancé de Yams
         List<int> yamsList = new List<int> { 6, 6, 6, 6, 6 };
         List<int> yamsList2 = new List<int> { 6, 6, 6, 6, 5 };
         List<int> yamsList3 = new List<int> { 2, 3, 4, 5, 6,7};
@@ -42,8 +41,6 @@ public class UnitTest1
         List<int> yamsList2 = new List<int> { 6, 6, 6, 6, 5};
         List<int> yamsList3 = new List<int> { 2, 2, 4, 4, 3};
         List<int> yamsList4 = new List<int> { 2, 2, 4, 4, 4};
-        // dans le cas ou on a une suite qui dépasse 5 ou inférieur à 5
-        // il faut gérer ce cas 
         List<int> yamsList5 = new List<int> { 2, 3, 2, 5, 5,5};
         
         var game = new YamsGame();
@@ -106,5 +103,67 @@ public class UnitTest1
         Assert.Equal(18, game.SumRoll(yamsList4));
         Assert.Throws<Exception>(() => game.SumRoll(yamsList5));
         
+    }
+
+    [Fact]
+    public void AnalyzeRoll_WhenYams_ShouldReturn50()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 6, 6, 6, 6, 6 }; 
+
+        var result = game.AnalyzeRoll(roll);
+
+        Assert.Equal(50, result);
+    }
+
+    [Fact]
+    public void AnalyzeRoll_WhenGrandeSuite_ShouldReturn40()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 1, 2, 3, 4, 5 }; 
+
+        var result = game.AnalyzeRoll(roll);
+
+        Assert.Equal(40, result);
+    }
+
+    [Fact]
+    public void AnalyzeRoll_WhenFull_ShouldReturn30()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 3, 3, 3, 5, 5 }; 
+
+        var result = game.AnalyzeRoll(roll);
+
+        Assert.Equal(30, result); 
+    }
+    
+    [Fact]
+    public void AnalyzeRoll_WhenCarre_ShouldReturn35()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 4, 4, 4, 4, 2 };
+        var result = game.AnalyzeRoll(roll);
+        Assert.Equal(35, result);
+    }
+
+    [Fact]
+    public void AnalyzeRoll_WhenBrelan_ShouldReturn28()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 5, 5, 5, 2, 3 };
+        var result = game.AnalyzeRoll(roll);
+        Assert.Equal(28, result);
+    }
+
+    [Fact]
+    public void AnalyzeRoll_WhenNoFigure_ShouldReturnSumOfRoll()
+    {
+        var game = new YamsGame();
+        var roll = new List<int> { 1, 2, 3, 4, 6 };
+
+        var result = game.AnalyzeRoll(roll);
+
+        Assert.Equal(16, result);
     }
 }
